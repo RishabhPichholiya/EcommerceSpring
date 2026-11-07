@@ -9,16 +9,18 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.List;
 
+
 @Component
 @RequiredArgsConstructor
 public class FakeStoreProductGateway implements IProductGateway {
 
-    private  final FakeStoreProductApi fakeStoreProductApi;
+    private final FakeStoreProductApi fakeStoreProductApi;
+
     @Override
     public List<ProductDTO> getAllProducts() throws IOException {
         //1. Make the HTTP request to the FakeStore API to fetch all the products
         List<FakeStoreProductResponseDTO> response = this.fakeStoreProductApi.getAllFakeProducts().execute().body();
-        if(response==null){
+        if (response == null) {
             throw new IOException("Failed to fetch products from FakeStore API");
         }
         return response.stream()
@@ -29,5 +31,19 @@ public class FakeStoreProductGateway implements IProductGateway {
                         .price(product.getPrice())
                         .build()
                 ).toList();
+    }
+
+    @Override
+    public ProductDTO getProduct(int id) throws IOException {
+        FakeStoreProductResponseDTO response1 = this.fakeStoreProductApi.getFakeProductById(id).execute().body();
+        if (response1 == null) {
+            throw new IOException("Failed to fetch Product from FakeStore API by id");
+        }
+        return ProductDTO.builder()
+                .id(response1.getId())
+                .category(response1.getCategory())
+                .title(response1.getTitle())
+                .price(response1.getPrice())
+                .build();
     }
 }

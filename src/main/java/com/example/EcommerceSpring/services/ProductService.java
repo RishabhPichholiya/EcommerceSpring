@@ -20,4 +20,8 @@ public class ProductService implements IProductService {
 
         return this.productGateway.getAllProducts();
     }
+
+    public ProductDTO getProduct(int id) throws IOException{
+        return this.productGateway.getProduct(id);
+    }
 }

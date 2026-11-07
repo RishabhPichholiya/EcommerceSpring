@@ -3,9 +3,7 @@ package com.example.EcommerceSpring.controllers;
 import com.example.EcommerceSpring.dto.ProductDTO;
 import com.example.EcommerceSpring.services.IProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,10 +15,17 @@ public class ProductController {
 
     private final IProductService productService;
 
+    // Get All Products
     @GetMapping
     public List<ProductDTO> getAllCategories() throws IOException {
 
         return productService.getAllProduct();
+    }
+
+    // Get Products by ID
+    @GetMapping("/{id}")
+    public ProductDTO getProductById(@PathVariable int id ) throws IOException{
+        return productService.getProduct(id);
     }
 
 
