@@ -2,6 +2,7 @@ package com.example.EcommerceSpring.controllers;
 
 import com.example.EcommerceSpring.dto.ProductDTO;
 import com.example.EcommerceSpring.services.IProductService;
+import com.example.EcommerceSpring.services.IProductService01;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import java.util.List;
 @RequestMapping("/api/categories")
 @RequiredArgsConstructor
 public class ProductController {
+
+
 
     private final IProductService productService;
 
@@ -31,22 +34,6 @@ public class ProductController {
         return ResponseEntity
             .status(HttpStatus.CREATED)
                 .body(product);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ProductDTO> deleteProductById(@PathVariable int id) throws IOException {
-
-        return null;
-    }
-
-    @PutMapping
-    public ResponseEntity<ProductDTO> updateProductById() throws IOException {
-
-        return null;
-    }
-
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO dto){
-        return null;
     }
 
 }

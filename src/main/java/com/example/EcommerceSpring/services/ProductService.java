@@ -2,6 +2,7 @@ package com.example.EcommerceSpring.services;
 
 import com.example.EcommerceSpring.dto.ProductDTO;
 import com.example.EcommerceSpring.gateway.IProductGateway;
+import com.example.EcommerceSpring.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
