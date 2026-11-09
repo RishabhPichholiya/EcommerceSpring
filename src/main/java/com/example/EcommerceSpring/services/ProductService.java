@@ -24,4 +24,9 @@ public class ProductService implements IProductService {
     public ProductDTO getProduct(int id) throws IOException{
         return this.productGateway.getProduct(id);
     }
+
+    @Override
+    public ProductDTO deleteProduct(int id) throws IOException {
+        return this.productGateway.getProduct(id);
+    }
 }

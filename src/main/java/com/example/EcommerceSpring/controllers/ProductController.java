@@ -3,6 +3,8 @@ package com.example.EcommerceSpring.controllers;
 import com.example.EcommerceSpring.dto.ProductDTO;
 import com.example.EcommerceSpring.services.IProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -17,17 +19,34 @@ public class ProductController {
 
     // Get All Products
     @GetMapping
-    public List<ProductDTO> getAllCategories() throws IOException {
+    public ResponseEntity<List<ProductDTO>> getAllCategories() throws IOException {
 
-        return productService.getAllProduct();
+        return ResponseEntity.ok(productService.getAllProduct());
     }
 
     // Get Products by ID
     @GetMapping("/{id}")
-    public ProductDTO getProductById(@PathVariable int id ) throws IOException{
-        return productService.getProduct(id);
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable int id ) throws IOException{
+        ProductDTO product = productService.getProduct(id);
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+                .body(product);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ProductDTO> deleteProductById(@PathVariable int id) throws IOException {
 
+        return null;
+    }
+
+    @PutMapping
+    public ResponseEntity<ProductDTO> updateProductById() throws IOException {
+
+        return null;
+    }
+
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO dto){
+        return null;
+    }
 
 }
