@@ -62,11 +62,16 @@ public class ProductController01 {
 
     // Get Products by keyword --> explore more current code not working
     @GetMapping("/keyword")
-    public ResponseEntity<List<ProductDTO01>> getProductByKeyword(@RequestParam String keyword ) throws Exception{
-        List<ProductDTO01> product = productService01.findProductsByText(keyword);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(product);
+    public ResponseEntity<?> getProductByKeyword(@RequestParam String keyword ) throws Exception{
+        try{
+            List<ProductDTO01> product = productService01.findProductsByText(keyword);
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(product);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found with given details");
+        }
+
     }
 
     // Get Products by ID

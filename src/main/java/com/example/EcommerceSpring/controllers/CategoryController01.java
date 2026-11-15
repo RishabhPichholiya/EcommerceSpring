@@ -6,6 +6,7 @@ import com.example.EcommerceSpring.dto.ProductWithCategoryDTO01;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.services.ICategoryService01;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,9 +38,14 @@ public class CategoryController01 {
 
     // Get CategoryWithProduct by ID
     @GetMapping("withProduct/{id}")
-    public ResponseEntity<CategoryWithProductDTO01> getCategoryWithProductById(@PathVariable long id ) throws Exception {
-        CategoryWithProductDTO01 category = categoryService01.getCategoryWithProductById(id);
-        return ResponseEntity.ok(category);
+    public ResponseEntity<?> getCategoryWithProductById(@PathVariable long id ) throws Exception {
+        try{
+            CategoryWithProductDTO01 category = categoryService01.getCategoryWithProductById(id);
+            return ResponseEntity.ok(category);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category Not Found");
+        }
+
     }
 
 }
