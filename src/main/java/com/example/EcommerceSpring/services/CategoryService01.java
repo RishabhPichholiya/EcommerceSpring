@@ -1,6 +1,7 @@
 package com.example.EcommerceSpring.services;
 
 import com.example.EcommerceSpring.dto.CategoryDTO01;
+import com.example.EcommerceSpring.dto.CategoryWithProductDTO01;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.mapper.CategoryMapper;
 import com.example.EcommerceSpring.repository.CategoryRepository;
@@ -37,5 +38,12 @@ public class CategoryService01 implements ICategoryService01{
         Category category =categoryRepository.findByName(name)
                 .orElseThrow(() -> new Exception("Category not found with name: " +name));
         return CategoryMapper.toDto(category);
+    }
+
+    @Override
+    public CategoryWithProductDTO01 getCategoryWithProductById(Long id) throws Exception {
+        Category category =categoryRepository.findById(id)
+                .orElseThrow(() ->new Exception("Category Not Found ..."));
+        return CategoryMapper.CategoryWithProducttoDto(category);
     }
 }

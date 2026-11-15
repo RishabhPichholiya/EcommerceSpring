@@ -1,15 +1,14 @@
 package com.example.EcommerceSpring.controllers;
 
 import com.example.EcommerceSpring.dto.CategoryDTO01;
-import com.example.EcommerceSpring.dto.ProductDTO01;
+import com.example.EcommerceSpring.dto.CategoryWithProductDTO01;
+import com.example.EcommerceSpring.dto.ProductWithCategoryDTO01;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.services.ICategoryService01;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.http.Path;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -36,5 +35,11 @@ public class CategoryController01 {
         return ResponseEntity.ok(result);}
     }
 
+    // Get CategoryWithProduct by ID
+    @GetMapping("withProduct/{id}")
+    public ResponseEntity<CategoryWithProductDTO01> getCategoryWithProductById(@PathVariable long id ) throws Exception {
+        CategoryWithProductDTO01 category = categoryService01.getCategoryWithProductById(id);
+        return ResponseEntity.ok(category);
+    }
 
 }
