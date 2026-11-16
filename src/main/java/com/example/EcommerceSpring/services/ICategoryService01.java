@@ -3,6 +3,7 @@ package com.example.EcommerceSpring.services;
 import com.example.EcommerceSpring.dto.CategoryDTO01;
 import com.example.EcommerceSpring.dto.CategoryWithProductDTO01;
 import com.example.EcommerceSpring.dto.ProductDTO01;
+import com.example.EcommerceSpring.exception.CategoryNotFoundException;
 
 import java.io.IOException;
 import java.util.List;

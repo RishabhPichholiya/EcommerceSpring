@@ -3,6 +3,7 @@ package com.example.EcommerceSpring.controllers;
 import com.example.EcommerceSpring.dto.ProductDTO;
 import com.example.EcommerceSpring.dto.ProductDTO01;
 import com.example.EcommerceSpring.dto.ProductWithCategoryDTO01;
+import com.example.EcommerceSpring.exception.ProductNotFoundException;
 import com.example.EcommerceSpring.services.IProductService01;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -80,6 +81,11 @@ public class ProductController01 {
         ProductWithCategoryDTO01 product = productService01.findProductWithCategoryById(id);
         return ResponseEntity
                 .ok(product);
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<String> handleProductNotFound(ProductNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
 }

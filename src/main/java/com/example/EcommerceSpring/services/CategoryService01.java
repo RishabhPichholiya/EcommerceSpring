@@ -3,6 +3,7 @@ package com.example.EcommerceSpring.services;
 import com.example.EcommerceSpring.dto.CategoryDTO01;
 import com.example.EcommerceSpring.dto.CategoryWithProductDTO01;
 import com.example.EcommerceSpring.entity.Category;
+import com.example.EcommerceSpring.exception.CategoryNotFoundException;
 import com.example.EcommerceSpring.mapper.CategoryMapper;
 import com.example.EcommerceSpring.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;

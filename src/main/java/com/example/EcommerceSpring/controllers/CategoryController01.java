@@ -4,6 +4,8 @@ import com.example.EcommerceSpring.dto.CategoryDTO01;
 import com.example.EcommerceSpring.dto.CategoryWithProductDTO01;
 import com.example.EcommerceSpring.dto.ProductWithCategoryDTO01;
 import com.example.EcommerceSpring.entity.Category;
+import com.example.EcommerceSpring.exception.CategoryNotFoundException;
+import com.example.EcommerceSpring.exception.ProductNotFoundException;
 import com.example.EcommerceSpring.services.ICategoryService01;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -46,6 +48,11 @@ public class CategoryController01 {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category Not Found");
         }
 
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<String> handleCategoryNotFound(CategoryNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
 }

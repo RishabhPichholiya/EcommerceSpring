@@ -5,6 +5,7 @@ import com.example.EcommerceSpring.dto.ProductDTO01;
 import com.example.EcommerceSpring.dto.ProductWithCategoryDTO01;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.entity.Product;
+import com.example.EcommerceSpring.exception.ProductNotFoundException;
 import com.example.EcommerceSpring.mapper.ProductMapper;
 import com.example.EcommerceSpring.repository.CategoryRepository;
 import com.example.EcommerceSpring.repository.ProductRepository;
@@ -85,7 +86,7 @@ public class ProductService01 implements IProductService01{
     @Override
     public ProductWithCategoryDTO01 findProductWithCategoryById(Long id) throws Exception{
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new Exception("Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException("Product with ID " + id +  " not found"));
         return ProductMapper.productWithCategorytoDto(product);
     }
 
