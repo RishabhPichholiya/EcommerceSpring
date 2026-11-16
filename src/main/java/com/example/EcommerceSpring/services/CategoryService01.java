@@ -44,7 +44,7 @@ public class CategoryService01 implements ICategoryService01{
     @Override
     public CategoryWithProductDTO01 getCategoryWithProductById(Long id) throws Exception {
         Category category =categoryRepository.findById(id)
-                .orElseThrow(() ->new Exception("Category Not Found ..."));
+                .orElseThrow(() ->new CategoryNotFoundException("Category Not Found ..."));
         return CategoryMapper.CategoryWithProducttoDto(category);
     }
 }

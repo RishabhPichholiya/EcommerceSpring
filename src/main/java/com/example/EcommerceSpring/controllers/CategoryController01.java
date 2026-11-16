@@ -50,9 +50,4 @@ public class CategoryController01 {
 
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<String> handleCategoryNotFound(CategoryNotFoundException ex){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-    }
-
 }
