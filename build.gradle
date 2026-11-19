@@ -2,7 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.1.2'
 	id 'io.spring.dependency-management' version '1.1.7'
-
 }
 
 group = 'com.example'
@@ -14,30 +13,47 @@ java {
 	}
 }
 
+ext {
+	set('springCloudVersion', "2025.1.4")
+}
+
 repositories {
 	mavenCentral()
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testCompileOnly 'org.projectlombok:lombok'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 	implementation 'io.github.cdimascio:dotenv-java:3.2.0'
-	// Source: https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+
 	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-	// Source: https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
 	implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.mysql:mysql-connector-j'
+
 	implementation 'org.flywaydb:flyway-mysql'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-flyway'
 
+	// Eureka Client
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 }
 
 tasks.named('test') {
